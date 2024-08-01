@@ -1,4 +1,4 @@
-# main.py
+# main.py :
 import sys
 from PyQt5.QtWidgets import QApplication
 
