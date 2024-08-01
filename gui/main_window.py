@@ -91,11 +91,16 @@ class MainWindow(QWidget):
         super().resizeEvent(event)
 
     def show_die1(self):
+        self.die1_button.hide()
+        self.die2_button.show()
         if self.die_index != 0:
             self.die_index = 0
             self.show_quads(self.die_index)
 
     def show_die2(self):
+        self.die2_button.hide()
+        self.die1_button.show()
+
         if self.die_index != 1:
             self.die_index = 1
             self.show_quads(self.die_index)
