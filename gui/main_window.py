@@ -26,9 +26,9 @@ class MainWindow(QWidget):
 
         # Layout for DIE buttons
         self.button_layout = QHBoxLayout()
-        self.die1_button = QPushButton("DIE1", self)
+        self.die1_button = QPushButton("GO TO DIE1", self)
         self.die1_button.clicked.connect(self.show_die1)
-        self.die2_button = QPushButton("DIE2", self)
+        self.die2_button = QPushButton("GO TO DIE2", self)
         self.die2_button.clicked.connect(self.show_die2)
         self.button_layout.addWidget(self.die1_button)
         self.button_layout.addWidget(self.die2_button)
