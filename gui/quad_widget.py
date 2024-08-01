@@ -2,7 +2,7 @@
 from PyQt5.QtWidgets import  QWidget, QGridLayout, QVBoxLayout, QLabel
 from PyQt5.QtCore import Qt
 
-from ויזואליזציה.gui.cluster_widget import ClusterWidget
+from gui.cluster_widget import ClusterWidget
 
 
 class QuadWidget(QWidget):

@@ -1,10 +1,9 @@
-
 import json
 from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea
 from PyQt5.QtCore import Qt
 
-from ויזואליזציה.die import Die
-from ויזואליזציה.gui.quad_widget import QuadWidget
+from die import Die
+from gui.quad_widget import QuadWidget
 
 
 class MainWindow(QWidget):
@@ -26,14 +25,14 @@ class MainWindow(QWidget):
         self.host_label.setFixedHeight(50)
         self.layout.addWidget(self.host_label)
 
-        # Layout for navigation buttons
+        # Layout for DIE buttons
         self.button_layout = QHBoxLayout()
-        self.prev_button = QPushButton("Previous DIE", self)
-        self.prev_button.clicked.connect(self.show_previous_die)
-        self.next_button = QPushButton("Next DIE", self)
-        self.next_button.clicked.connect(self.show_next_die)
-        self.button_layout.addWidget(self.prev_button)
-        self.button_layout.addWidget(self.next_button)
+        self.die1_button = QPushButton("DIE1", self)
+        self.die1_button.clicked.connect(self.show_die1)
+        self.die2_button = QPushButton("DIE2", self)
+        self.die2_button.clicked.connect(self.show_die2)
+        self.button_layout.addWidget(self.die1_button)
+        self.button_layout.addWidget(self.die2_button)
         self.layout.addLayout(self.button_layout)
 
         # Scroll area for Quad Matrix
@@ -90,13 +89,13 @@ class MainWindow(QWidget):
         self.adjust_quad_sizes()
         super().resizeEvent(event)
 
-    def show_previous_die(self):
-        self.die_index = max(0, self.die_index - 1)
+    def show_die1(self):
+        self.die_index = 0
         self.show_quads(self.die_index)
 
-    def show_next_die(self):
-        with open('../chip_data.json', 'r') as config:
+    def show_die2(self):
+        with open('chip_data.json', 'r') as config:
             data = json.load(config)
         total_dies = len(data.get("DIES", []))
-        self.die_index = min(total_dies - 1, self.die_index + 1)
+        self.die_index = min(1, total_dies - 1)  # Adjust to ensure index does not exceed bounds
         self.show_quads(self.die_index)

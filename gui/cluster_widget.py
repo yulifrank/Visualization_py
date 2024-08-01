@@ -2,7 +2,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor
 from PyQt5.QtWidgets import QVBoxLayout, QWidget, QLabel
 
-from ויזואליזציה.gui.cluster_info_widget import ClusterInfoWidget
+from gui.cluster_info_widget import ClusterInfoWidget
 
 
 class ClusterWidget(QWidget):

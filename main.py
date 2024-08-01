@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, QVB
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor
 from die import Die
-from ויזואליזציה.gui.main_window import MainWindow
+from gui.main_window import MainWindow
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
