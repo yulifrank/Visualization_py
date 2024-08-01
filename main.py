@@ -1,9 +1,7 @@
 import sys
-import json
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
-from die import Die
+
+from PyQt5.QtWidgets import QApplication
+
 from gui.main_window import MainWindow
 
 if __name__ == '__main__':
