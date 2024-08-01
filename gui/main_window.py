@@ -1,4 +1,6 @@
 # main_window.py
+import json
+
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QGridLayout
 from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
@@ -91,7 +93,7 @@ class MainWindow(QWidget):
         super().resizeEvent(event)
 
     def show_die1(self):
-<<<<<<< HEAD
+
         self.die_index = 0
         self.die1_button.hide()
         self.die2_button.show()
@@ -106,7 +108,6 @@ class MainWindow(QWidget):
         self.die2_button.hide()
         self.die1_button.show()
         self.show_quads(self.die_index)
-=======
         if self.die_index != 0:
             self.die_index = 0
             self.show_quads(self.die_index)
@@ -115,4 +116,3 @@ class MainWindow(QWidget):
         if self.die_index != 1:
             self.die_index = 1
             self.show_quads(self.die_index)
->>>>>>> b6abb605ffec0ddb1fc96b7378dd0980d8daf9b8
