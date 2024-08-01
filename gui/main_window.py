@@ -91,6 +91,22 @@ class MainWindow(QWidget):
         super().resizeEvent(event)
 
     def show_die1(self):
+<<<<<<< HEAD
+        self.die_index = 0
+        self.die1_button.hide()
+        self.die2_button.show()
+
+        self.show_quads(self.die_index)
+
+    def show_die2(self):
+        with open('chip_data.json', 'r') as config:
+            data = json.load(config)
+        total_dies = len(data.get("DIES", []))
+        self.die_index = min(1, total_dies - 1)  # Adjust to ensure index does not exceed bounds
+        self.die2_button.hide()
+        self.die1_button.show()
+        self.show_quads(self.die_index)
+=======
         if self.die_index != 0:
             self.die_index = 0
             self.show_quads(self.die_index)
@@ -99,3 +115,4 @@ class MainWindow(QWidget):
         if self.die_index != 1:
             self.die_index = 1
             self.show_quads(self.die_index)
+>>>>>>> b6abb605ffec0ddb1fc96b7378dd0980d8daf9b8
