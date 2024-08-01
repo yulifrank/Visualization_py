@@ -25,6 +25,7 @@ class QuadWidget(QWidget):
             widget = self.layout().itemAt(i).widget()
             if widget is not None:
                 widget.deleteLater()
+
         cluster_layout = QGridLayout()
         cluster_layout.setSpacing(0)
         self.layout().addLayout(cluster_layout)
