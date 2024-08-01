@@ -91,6 +91,9 @@ class MainWindow(QWidget):
 
     def show_die1(self):
         self.die_index = 0
+        self.die1_button.hide()
+        self.die2_button.show()
+
         self.show_quads(self.die_index)
 
     def show_die2(self):
@@ -98,4 +101,6 @@ class MainWindow(QWidget):
             data = json.load(config)
         total_dies = len(data.get("DIES", []))
         self.die_index = min(1, total_dies - 1)  # Adjust to ensure index does not exceed bounds
+        self.die2_button.hide()
+        self.die1_button.show()
         self.show_quads(self.die_index)
