@@ -1,6 +1,4 @@
 # main_window.py
-import json
-
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QGridLayout
 from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
@@ -93,21 +91,6 @@ class MainWindow(QWidget):
         super().resizeEvent(event)
 
     def show_die1(self):
-
-        self.die_index = 0
-        self.die1_button.hide()
-        self.die2_button.show()
-
-        self.show_quads(self.die_index)
-
-    def show_die2(self):
-        with open('chip_data.json', 'r') as config:
-            data = json.load(config)
-        total_dies = len(data.get("DIES", []))
-        self.die_index = min(1, total_dies - 1)  # Adjust to ensure index does not exceed bounds
-        self.die2_button.hide()
-        self.die1_button.show()
-        self.show_quads(self.die_index)
         if self.die_index != 0:
             self.die_index = 0
             self.show_quads(self.die_index)
