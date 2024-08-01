@@ -1,7 +1,7 @@
-# main_window.py
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QGridLayout
 from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
+
 class MainWindow(QWidget):
     def __init__(self, data_manager):
         super().__init__()
@@ -100,7 +100,6 @@ class MainWindow(QWidget):
     def show_die2(self):
         self.die2_button.hide()
         self.die1_button.show()
-
         if self.die_index != 1:
             self.die_index = 1
             self.show_quads(self.die_index)
