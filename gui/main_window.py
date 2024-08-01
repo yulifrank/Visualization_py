@@ -1,14 +1,13 @@
-import json
-from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea
+# main_window.py
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayout, QScrollArea, QGridLayout
 from PyQt5.QtCore import Qt
-
-from die import Die
 from gui.quad_widget import QuadWidget
-
-
 class MainWindow(QWidget):
-    def __init__(self):
+    def __init__(self, data_manager):
         super().__init__()
+        self.data_manager = data_manager
+        self.die1 = None
+        self.die2 = None
         self.die_index = 0
         self.initUI()
 
@@ -47,14 +46,16 @@ class MainWindow(QWidget):
         self.scroll_layout.addLayout(self.quad_layout)
         self.layout.addWidget(self.scroll_area)
 
-        # Initially show quads for DIE1
+        # Initially load and show quads for DIE1
+        self.load_dies()
         self.show_quads(self.die_index)
 
+    def load_dies(self):
+        self.die1 = self.data_manager.load_die(0)
+        self.die2 = self.data_manager.load_die(1)
+
     def show_quads(self, die_index):
-        with open('chip_data.json', 'r') as config:
-            data = json.load(config)
-        die_json = data.get("DIES", [])[die_index]
-        die = Die(die_index, die_json)
+        die = self.die1 if die_index == 0 else self.die2
 
         # Clear previous widgets from the quad layout
         for i in reversed(range(self.quad_layout.count())):
@@ -90,12 +91,11 @@ class MainWindow(QWidget):
         super().resizeEvent(event)
 
     def show_die1(self):
-        self.die_index = 0
-        self.show_quads(self.die_index)
+        if self.die_index != 0:
+            self.die_index = 0
+            self.show_quads(self.die_index)
 
     def show_die2(self):
-        with open('chip_data.json', 'r') as config:
-            data = json.load(config)
-        total_dies = len(data.get("DIES", []))
-        self.die_index = min(1, total_dies - 1)  # Adjust to ensure index does not exceed bounds
-        self.show_quads(self.die_index)
+        if self.die_index != 1:
+            self.die_index = 1
+            self.show_quads(self.die_index)
