@@ -3,6 +3,12 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor
 from gui.cluster_info_widget import ClusterInfoWidget
 
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
+# הייבוא של ClusterInfoWidget נשאר כאן
+from gui.cluster_info_widget import ClusterInfoWidget
+
 class ClusterWidget(QWidget):
     def __init__(self, cluster, parent=None):
         super().__init__(parent)
@@ -16,14 +22,16 @@ class ClusterWidget(QWidget):
         text_color = color.name()
         self.label = QLabel(f'{self.cluster.type_name}\nCluster {self.cluster.id}', self)
         self.label.setAlignment(Qt.AlignCenter)
-        self.label.setStyleSheet(f'color: {text_color};')
+        self.label.setStyleSheet(f'color: {text_color}; font-size: 16px;')
         layout.addWidget(self.label)
-        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {text_color};')
+        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {text_color}; border-radius: 10px; padding: 20px;')
 
         self.mousePressEvent = self.show_cluster_info
 
     def show_cluster_info(self, event):
-        if hasattr(self.parent(), 'info_widget'):
-            self.parent().info_widget.deleteLater()
-        self.parent().info_widget = ClusterInfoWidget(self.cluster.id, self.cluster.color, self.parent())
-        self.parent().info_widget.show()
+        from gui.quad_widget import QuadWidget  # ייבוא כאן כדי למנוע מעגליות
+        parent_widget = self.parent()
+        while parent_widget and not isinstance(parent_widget, QuadWidget):
+            parent_widget = parent_widget.parent()
+        if parent_widget:
+            parent_widget.show_cluster_info(self.cluster)

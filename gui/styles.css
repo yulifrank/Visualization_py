@@ -1,0 +1,58 @@
+/* סגנון כללי */
+QWidget {
+    background-color: #f0f0f0; /* אפור בהיר */
+    border-radius: 10px;
+}
+
+/* סגנון עבור QLabel */
+QLabel {
+    color: #333; /* צבע טקסט כהה */
+    font-size: 18px;
+}
+
+/* סגנון עבור QPushButton */
+QPushButton {
+    background-color: #5700FF;  /* סגול */
+    border: none;
+    color: white;
+    padding: 15px 30px;  /* גודל */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;  /* גופן */
+    margin: 6px 3px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 15px;
+    box-shadow: 0 6px #999;
+}
+QPushButton:hover {
+    background-color: #2F2F3B;  /* סגול כהה יותר כשמרחפים */
+}
+QPushButton:pressed {
+    background-color: #5700FF;  /* סגול כהה יותר כשנלחץ */
+    box-shadow: 0 3px #666;
+    transform: translateY(3px);
+}
+
+/* סגנון עבור ClusterInfoWidget */
+.ClusterInfoWidget {
+    background-color: #F2F2F2; /* אפור בהיר */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* סגנון עבור ClusterWidget */
+.ClusterWidget {
+    background-color: #F2F2F2; /* אפור בהיר */
+    border: 2px dashed #333; /* אפור כהה */
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* סגנון עבור QuadWidget */
+.QuadWidget {
+    border: 2px dashed red;
+    border-radius: 10px;
+    padding: 20px;
+}

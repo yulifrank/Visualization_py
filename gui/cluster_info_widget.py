@@ -1,6 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QColor
+
 
 class ClusterInfoWidget(QWidget):
     def __init__(self, cluster_id, color, parent=None):
@@ -10,17 +12,13 @@ class ClusterInfoWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        self.setStyleSheet(f'background-color: lightgrey; border: 10px solid {self.color}; padding: 30px;')
+        self.setStyleSheet(
+            f'background-color: lightgrey; border: 10px solid {self.color}; padding: 30px; border-radius: 10px;')
         self.label = QLabel(f'Cluster ID: {self.cluster_id}', self)
         self.label.setAlignment(Qt.AlignCenter)
-        self.setLayout(QVBoxLayout())
-        self.layout().addWidget(self.label)
-        self.setFixedSize(500, 500)
-
-        back_button = QPushButton("Back")
-        back_button.clicked.connect(self.close)
-        self.layout().addWidget(back_button)
+        layout = QVBoxLayout()
+        layout.addWidget(self.label)
 
 
-
-
+        self.setLayout(layout)
+        self.setWindowState(Qt.WindowMaximized)  # Fullscreen mode

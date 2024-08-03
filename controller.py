@@ -4,6 +4,7 @@ from die import Die
 
 class DataManager:
     def __init__(self, filename):
+        print(filename)
         self.filename = filename
         self.die_objects = {}
 

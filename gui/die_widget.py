@@ -1,11 +1,13 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QScrollArea
+import os
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QScrollArea, QPushButton
 from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
 
 class DieWidget(QWidget):
-    def __init__(self, data_manager):
+    def __init__(self, data_manager, main_window):
         super().__init__()
         self.data_manager = data_manager
+        self.main_window = main_window
         self.die1 = None
         self.die2 = None
         self.initUI()
@@ -13,6 +15,11 @@ class DieWidget(QWidget):
     def initUI(self):
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
+
+        # Load external stylesheet
+        style_path = os.path.join(os.path.dirname(__file__), 'styles.css')
+        with open(style_path, 'r', encoding='utf-8') as f:
+            self.setStyleSheet(f.read())
 
         # Scroll area for Quad Matrix
         self.scroll_area = QScrollArea()
@@ -28,6 +35,11 @@ class DieWidget(QWidget):
         self.scroll_layout.addWidget(self.quad_container)
         self.scroll_area.setWidget(self.scroll_content)
         self.layout.addWidget(self.scroll_area)
+
+        # Back button
+        self.back_button = QPushButton("Back")
+        self.back_button.clicked.connect(self.go_back)
+        self.layout.addWidget(self.back_button)
 
         # Initially hide the quad_container
         self.quad_container.setVisible(False)
@@ -99,3 +111,6 @@ class DieWidget(QWidget):
     def resizeEvent(self, event):
         self.adjust_quad_sizes()
         super().resizeEvent(event)
+
+    def go_back(self):
+        self.main_window.show_die_buttons()

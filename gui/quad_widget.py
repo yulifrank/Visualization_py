@@ -1,9 +1,11 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLabel, QPushButton
 from PyQt5.QtCore import Qt
 
-from gui.cluster_widget import ClusterWidget
+from gui.cluster_info_widget import ClusterInfoWidget
 
 
+# הסרת הייבוא של ClusterWidget כאן כדי למנוע מעגליות
+# נייבא את ClusterWidget רק כשנשתמש בו
 class QuadWidget(QWidget):
     def __init__(self, quad, parent=None):
         super().__init__(parent)
@@ -20,7 +22,8 @@ class QuadWidget(QWidget):
         self.setStyleSheet('border: 2px dashed red;')
         self.mousePressEvent = self.show_clusters
 
-    def show_clusters(self, event):
+    def show_clusters(self, event=None):
+        from gui.cluster_widget import ClusterWidget  # ייבוא כאן כדי למנוע מעגליות
         self.clear_layout()
 
         cluster_layout = QGridLayout()
@@ -38,6 +41,16 @@ class QuadWidget(QWidget):
         cluster_layout.addWidget(back_button, 8, 0, 1, 8)  # Adding the back button at the bottom
 
         self.adjustSize()
+
+    def show_cluster_info(self, cluster):
+        self.clear_layout()
+
+        cluster_info_widget = ClusterInfoWidget(cluster.id, cluster.color, self)
+        self.layout.addWidget(cluster_info_widget)
+
+        back_button = QPushButton("Back")
+        back_button.clicked.connect(self.show_clusters)
+        self.layout.addWidget(back_button)
 
     def show_quad(self):
         self.clear_layout()
