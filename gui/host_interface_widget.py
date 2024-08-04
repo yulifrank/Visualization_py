@@ -48,7 +48,20 @@ class HostInterfaceWidget(QWidget):
             label.setStyleSheet(
                 f'background-color: {color}; border: 2px solid black; border-radius: 10px; padding: 5px; margin: 5px;'
             )
+            label.setFixedSize(150, 50)  # Set a fixed size for the label
             return label
+
+        # Function to create a button for the "H2G" and "G2H" sections
+        def create_section_button(title, color, data):
+            if not data or (isinstance(data, dict) and not data) or (isinstance(data, list) and not data):
+                return None  # Skip creating a button if data is empty
+            button = QPushButton(title)
+            button.setStyleSheet(
+                f'background-color: {color}; border: 2px solid black; border-radius: 10px; padding: 5px; margin: 5px;'
+            )
+            button.setFixedSize(150, 50)  # Set a fixed size for the button
+            button.clicked.connect(lambda: self.show_details(title, data))
+            return button
 
         # Generate sections dynamically based on host_interface data
         data_sections = {
@@ -66,7 +79,7 @@ class HostInterfaceWidget(QWidget):
                 if section_label:
                     self.sections_layout.addWidget(section_label)
             else:
-                section_button = self.create_section_button(section_name, color, section_data)
+                section_button = create_section_button(section_name, color, section_data)
                 if section_button:
                     self.sections_layout.addWidget(section_button)
 
@@ -80,16 +93,6 @@ class HostInterfaceWidget(QWidget):
         # Add the outer frame to the main layout
         self.main_layout.addWidget(self.outer_frame)
         self.setLayout(self.main_layout)
-
-    def create_section_button(self, title, color, data):
-        if not data or (isinstance(data, dict) and not data) or (isinstance(data, list) and not data):
-            return None  # Skip creating a button if data is empty
-        button = QPushButton(title)
-        button.setStyleSheet(
-            f'background-color: {color}; border: 2px solid black; border-radius: 10px; padding: 5px; margin: 5px;'
-        )
-        button.clicked.connect(lambda: self.show_details(title, data))
-        return button
 
     def show_details(self, title, data):
         # Prepare details to display
