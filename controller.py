@@ -12,11 +12,12 @@ class DataManager:
         if die_index not in self.die_objects:
             with open(self.filename, 'r') as config:
                 data = json.load(config)
-            die_json = data.get("DIES", [])[die_index]
+            die_json = data.get("Top",[]).get("DIES", [])[die_index]
+            print(die_json)
             self.die_objects[die_index] = Die(die_index, die_json)
         return self.die_objects[die_index]
 
     def get_total_dies(self):
         with open(self.filename, 'r') as config:
             data = json.load(config)
-        return len(data.get("DIES", []))
+        return len(data.get("Top",[]).get("DIES", []))

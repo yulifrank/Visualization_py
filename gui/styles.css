@@ -21,9 +21,9 @@ QPushButton {
     display: inline-block;
     font-size: 16px;  /* גופן */
     margin: 6px 3px;
-    transition-duration: 0.4s;
+    transition-duration: 0.6s;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0 6px #999;
 }
 QPushButton:hover {
