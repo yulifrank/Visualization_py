@@ -5,6 +5,7 @@
       "height_mm": 300
     }
   },
+
   "Top": {
     "Host_interface": {
       "BMT": "leaf",
@@ -546,7 +547,38 @@
               "Ecore": {
                 "row": 7,
                 "col": 0,
-                "cluster_id": 57
+                "cluster_id": 57,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
               },
               "CBUs": [
                 {
@@ -869,15 +901,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                1,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7
-              ]
+              "other quads": [1,2,3,4,5,6,7]
             },
             {
               "id": 1,
@@ -885,7 +909,38 @@
               "Ecore": {
                 "row": 7,
                 "col": 7,
-                "cluster_id": 128
+                "cluster_id": 128,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
               },
               "CBUs": [
                 {
@@ -1208,15 +1263,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                2,
-                3,
-                4,
-                5,
-                6,
-                7
-              ]
+              "other quads": [0,2,3,4,5,6,7]
             },
             {
               "id": 2,
@@ -1224,7 +1271,38 @@
               "Ecore": {
                 "row": 0,
                 "col": 0,
-                "cluster_id": 129
+                "cluster_id": 129,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
               },
               "CBUs": [
                 {
@@ -1547,15 +1625,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                1,
-                3,
-                4,
-                5,
-                6,
-                7
-              ]
+              "other quads": [0,1,3,4,5,6,7]
             },
             {
               "id": 3,
@@ -1563,7 +1633,39 @@
               "Ecore": {
                 "row": 0,
                 "col": 7,
-                "cluster_id": 200
+                "cluster_id": 200,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
+
               },
               "CBUs": [
                 {
@@ -1886,15 +1988,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                1,
-                2,
-                4,
-                5,
-                6,
-                7
-              ]
+              "other quads": [0,1,2,4,5,6,7]
             }
           ]
         },
@@ -2438,7 +2532,38 @@
               "Ecore": {
                 "row": 7,
                 "col": 0,
-                "cluster_id": 57
+                "cluster_id": 57,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
               },
               "CBUs": [
                 {
@@ -2761,15 +2886,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                1,
-                2,
-                3,
-                5,
-                6,
-                7
-              ]
+              "other quads": [0,1,2,3,5,6,7]
             },
             {
               "id": 5,
@@ -2777,7 +2894,39 @@
               "Ecore": {
                 "row": 7,
                 "col": 7,
-                "cluster_id": 128
+                "cluster_id": 128,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
+
               },
               "CBUs": [
                 {
@@ -3100,15 +3249,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                6,
-                7
-              ]
+              "other quads": [0,1,2,3,4,6,7]
             },
             {
               "id": 6,
@@ -3116,7 +3257,38 @@
               "Ecore": {
                 "row": 0,
                 "col": 0,
-                "cluster_id": 129
+                "cluster_id": 129,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
               },
               "CBUs": [
                 {
@@ -3439,15 +3611,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                7
-              ]
+              "other quads": [0,1,2,3,4,5,7]
             },
             {
               "id": 7,
@@ -3455,7 +3619,38 @@
               "Ecore": {
                 "row": 0,
                 "col": 7,
-                "cluster_id": 200
+                "cluster_id": 200,
+                "Ecores": [
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  },
+                  {
+                    "Ecore": "leaf"
+                  }
+                ],
+                "BMT": "leaf",
+                "CBUS inj": "leaf",
+                "CBUS clt": "leaf",
+                "nfi inj": "leaf",
+                "nfi clt": "leaf"
               },
               "CBUs": [
                 {
@@ -3778,15 +3973,7 @@
               ],
               "HBM": "leaf",
               "host_if": "?",
-              "other quads": [
-                0,
-                1,
-                2,
-                3,
-                4,
-                5,
-                6
-              ]
+              "other quads": [0,1,2,3,4,5,6]
             }
           ]
         },
