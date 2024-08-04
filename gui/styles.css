@@ -35,6 +35,14 @@ QPushButton:pressed {
     transform: translateY(3px);
 }
 
+/* סגנון עבור HostInterfaceWidget */
+QFrame {
+    border: 2px solid #333; /* מסגרת כהה */
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+}
+
 /* סגנון עבור ClusterInfoWidget */
 .ClusterInfoWidget {
     background-color: #F2F2F2; /* אפור בהיר */

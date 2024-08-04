@@ -4,12 +4,14 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QLabel, QHBoxLayo
 from PyQt5.QtCore import Qt
 import qtawesome as qta
 from gui.die_widget import DieWidget  # Import the DieWidget class
+from gui.host_interface_widget import HostInterfaceWidget  # Import the HostInterfaceWidget class
 
 class MainWindow(QWidget):
     def __init__(self, data_manager):
         super().__init__()
         self.data_manager = data_manager
         self.die_widget = None
+        self.host_interface_widget = None
         self.initUI()
 
     def initUI(self):
@@ -23,12 +25,10 @@ class MainWindow(QWidget):
         with open(style_path, 'r', encoding='utf-8') as f:
             self.setStyleSheet(f.read())
 
-        # Host Interface Label
-        self.host_label = QLabel('Host Interface', self)
-        self.host_label.setAlignment(Qt.AlignCenter)
-        self.host_label.setStyleSheet('background-color: lightgrey; border: 1px dashed black; padding: 5px;')
-        self.host_label.setFixedHeight(50)
-        self.layout.addWidget(self.host_label)
+        # Create HostInterfaceWidget and add to layout
+        host_interface_data = self.data_manager.load_host_interface()
+        self.host_interface_widget = HostInterfaceWidget(host_interface_data, self)
+        self.layout.addWidget(self.host_interface_widget)
 
         # Layout for DIE buttons
         self.button_layout = QHBoxLayout()
@@ -67,8 +67,15 @@ class MainWindow(QWidget):
         self.die_widget.setVisible(True)
         self.die_widget.show_quads(1)  # Show DIE2 quads
 
+    def show_host_interface(self):
+        print("Showing Host Interface")  # Debug print
+        self.die1_button.hide()
+        self.die2_button.hide()
+        self.die_widget.setVisible(False)
+        self.host_interface_widget.setVisible(True)
+
     def show_die_buttons(self):
+        print("Showing DIE Buttons")  # Debug print
         self.die1_button.show()
         self.die2_button.show()
         self.die_widget.setVisible(False)
-

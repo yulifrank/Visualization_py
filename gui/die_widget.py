@@ -113,4 +113,5 @@ class DieWidget(QWidget):
         super().resizeEvent(event)
 
     def go_back(self):
+
         self.main_window.show_die_buttons()
