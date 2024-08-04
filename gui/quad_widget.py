@@ -48,7 +48,7 @@ class QuadWidget(QWidget):
         cluster_info_widget = ClusterInfoWidget(cluster.id, cluster.color, self)
         self.layout.addWidget(cluster_info_widget)
 
-        back_button = QPushButton("Back")
+        back_button = QPushButton("Back To clusters")
         back_button.clicked.connect(self.show_clusters)
         self.layout.addWidget(back_button)
 
