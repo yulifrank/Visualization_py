@@ -9,8 +9,15 @@ CLASTER_HEIGHT = 1
 CLASTER_WIDTH = 1
 
 CLASTER_COLORS = {
+    "BMT": 'lightblue',
+    "H2G": 'lightgreen',
+    "G2H": 'lightcoral',
+    "PCIe": 'yellow',
     "Cbu": 'blue',
     'Tcu': 'red',
     'Ecore': 'green',
-    'HBMInterface': 'purple'  # הוספת צבע סגול עבור ה-HBM Interface
+    'HBMInterface': 'purple',
+    'Die': 'orange',
+    'Quad': 'cyan',
 }
+

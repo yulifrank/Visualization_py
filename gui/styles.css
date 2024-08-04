@@ -21,9 +21,9 @@ QPushButton {
     display: inline-block;
     font-size: 16px;  /* גופן */
     margin: 6px 3px;
-    transition-duration: 0.4s;
+    transition-duration: 0.6s;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 5px;
     box-shadow: 0 6px #999;
 }
 QPushButton:hover {
@@ -33,6 +33,14 @@ QPushButton:pressed {
     background-color: #5700FF;  /* סגול כהה יותר כשנלחץ */
     box-shadow: 0 3px #666;
     transform: translateY(3px);
+}
+
+/* סגנון עבור HostInterfaceWidget */
+QFrame {
+    border: 2px solid #333; /* מסגרת כהה */
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
 }
 
 /* סגנון עבור ClusterInfoWidget */
@@ -55,4 +63,29 @@ QPushButton:pressed {
     border: 2px dashed red;
     border-radius: 10px;
     padding: 20px;
+}
+
+/* סגנון עבור QScrollBar */
+QScrollBar:vertical {
+    border: 2px solid #999999;
+    background: #F0F0F0;
+    width: 12px;
+}
+QScrollBar::handle:vertical {
+    background: #CCCCCC;
+    min-height: 20px;
+}
+QScrollBar::add-line:vertical {
+    border: 2px solid #999999;
+    background: #F0F0F0;
+    height: 20px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: 2px solid #999999;
+    background: #F0F0F0;
+    height: 20px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
 }

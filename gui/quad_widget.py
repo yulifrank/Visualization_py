@@ -19,7 +19,7 @@ class QuadWidget(QWidget):
         self.label = QLabel(self.quad.name, self)
         self.label.setAlignment(Qt.AlignCenter)
         self.layout.addWidget(self.label)
-        self.setStyleSheet('border: 2px dashed red;')
+        self.setStyleSheet('border: 2px dashed black;')
         self.mousePressEvent = self.show_clusters
 
     def show_clusters(self, event=None):
@@ -59,7 +59,7 @@ class QuadWidget(QWidget):
         self.label.setAlignment(Qt.AlignCenter)
         self.layout.addWidget(self.label)
 
-        self.setStyleSheet('border: 2px dashed red;')
+        # self.setStyleSheet('border: 2px dashed red;')
         self.mousePressEvent = self.show_clusters
         self.adjustSize()
 

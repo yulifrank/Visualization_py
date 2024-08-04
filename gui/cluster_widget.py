@@ -1,11 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor
-from gui.cluster_info_widget import ClusterInfoWidget
-
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QColor
 # הייבוא של ClusterInfoWidget נשאר כאן
 from gui.cluster_info_widget import ClusterInfoWidget
 
