@@ -27,6 +27,6 @@ class DataManager:
         with open(self.filename, 'r') as config:
             data = json.load(config)
         host_interface_data = data.get("Top", {}).get("Host_interface", {})
+        print(host_interface_data)  # For debugging
         self.host_interface = HostInterface(host_interface_data)
-        print("g2h",self.host_interface.g2h)
         return self.host_interface

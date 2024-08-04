@@ -12,7 +12,7 @@ CLASTER_COLORS = {
     "BMT": 'lightblue',
     "H2G": 'lightgreen',
     "G2H": 'lightcoral',
-    "PCIe": 'lightyellow',
+    "PCIe": 'yellow',
     "Cbu": 'blue',
     'Tcu': 'red',
     'Ecore': 'green',
