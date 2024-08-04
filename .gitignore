@@ -1,0 +1,12 @@
+
+__pycache__/cluster.cpython-311.pyc
+__pycache__/component.cpython-311.pyc
+__pycache__/constants.cpython-311.pyc
+__pycache__/controller.cpython-311.pyc
+__pycache__/die.cpython-311.pyc
+__pycache__/quad.cpython-311.pyc
+gui/__pycache__/cluster_info_widget.cpython-311.pyc
+gui/__pycache__/cluster_widget.cpython-311.pyc
+gui/__pycache__/die_widget.cpython-311.pyc
+gui/__pycache__/main_window.cpython-311.pyc
+gui/__pycache__/quad_widget.cpython-311.pyc
