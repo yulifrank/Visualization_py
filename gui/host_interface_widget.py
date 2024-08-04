@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame
 from PyQt5.QtCore import Qt
+from constants import CLASTER_COLORS  # ייבוא קבועים
 
 class HostInterfaceWidget(QWidget):
     def __init__(self, host_interface, parent=None):
@@ -8,48 +9,63 @@ class HostInterfaceWidget(QWidget):
         self.initUI()
 
     def initUI(self):
-        layout = QHBoxLayout()  # Use horizontal layout
+        main_layout = QVBoxLayout()  # Use vertical layout for the main widget
 
-        # Function to create a section with title and content
-        def create_section(title, content):
-            frame = QFrame()
-            frame.setFrameShape(QFrame.StyledPanel)
-            frame.setFrameShadow(QFrame.Raised)
-            frame.setStyleSheet('border: 2px solid #333; border-radius: 10px; padding: 10px; margin: 5px;')  # Added border style
+        # Create a frame for the whole panel with a title
+        outer_frame = QFrame()
+        outer_frame.setFrameShape(QFrame.StyledPanel)
+        outer_frame.setFrameShadow(QFrame.Raised)
+
+        # Create a title for the frame
+        title_label = QLabel("<b>HostInterface</b>")
+        title_label.setAlignment(Qt.AlignCenter)
+        title_label.setStyleSheet('border-bottom: 2px solid black; padding-bottom: 5px; margin-bottom: 10px;')
+
+        # Create a layout for the frame
+        frame_layout = QVBoxLayout()
+        frame_layout.addWidget(title_label)
+
+        # Create a widget to contain the dynamic sections
+        sections_widget = QWidget()
+        sections_layout = QHBoxLayout()
+
+        # Function to create a section with title and color
+        def create_section(title, color):
+            section_frame = QFrame()
+            section_frame.setFrameShape(QFrame.StyledPanel)
+            section_frame.setFrameShadow(QFrame.Raised)
+            section_frame.setStyleSheet(
+                f'background-color: {color}; border: 2px solid black; border-radius: 10px; padding: 10px; margin: 5px;')  # Set background color
             section_layout = QVBoxLayout()
             title_label = QLabel(f"<b>{title}</b>")
             title_label.setAlignment(Qt.AlignCenter)
             section_layout.addWidget(title_label)
-            section_layout.addWidget(content)
-            frame.setLayout(section_layout)
-            return frame
+            section_frame.setLayout(section_layout)
+            return section_frame
 
-        # Create BMT section
-        bmt_label = QLabel(f"BMT: {self.host_interface.get_bmt()}")
-        bmt_section = create_section("BMT", bmt_label)
-        layout.addWidget(bmt_section)
+        # Generate sections dynamically based on host_interface data
+        data_sections = {
+            "BMT": self.host_interface.get_bmt(),
+            "H2G": self.host_interface.get_h2g(),
+            "G2H": self.host_interface.get_g2h(),
+            "PCIe": self.host_interface.get_pcie()
+        }
 
-        # Create H2G section
-        h2g_layout = QVBoxLayout()
-        h2g_data = self.host_interface.get_h2g()
-        for key, value in h2g_data.items():
-            label = QLabel(f"{key}: {value}")
-            h2g_layout.addWidget(label)
-        h2g_section = create_section("H2G", QWidget().setLayout(h2g_layout))
-        layout.addWidget(h2g_section)
+        for section_name, section_data in data_sections.items():
+            # Determine the color based on the section type
+            color = 'gray'  # Default color if not found in CLASTER_COLORS
+            if section_name in CLASTER_COLORS:
+                color = CLASTER_COLORS[section_name]
 
-        # Create G2H section
-        g2h_layout = QVBoxLayout()
-        g2h_data = self.host_interface.get_g2h()
-        for eq in g2h_data:
-            eq_label = QLabel(f"EQ ID {eq['id']}: {eq['event_queue']}")
-            g2h_layout.addWidget(eq_label)
-        g2h_section = create_section("G2H", QWidget().setLayout(g2h_layout))
-        layout.addWidget(g2h_section)
+            section_frame = create_section(section_name, color)
+            sections_layout.addWidget(section_frame)
 
-        # Create PCIe section
-        pcie_label = QLabel("PCIe information here")  # Adjust as needed based on PCIe data
-        pcie_section = create_section("PCIe", pcie_label)
-        layout.addWidget(pcie_section)
+        sections_widget.setLayout(sections_layout)
 
-        self.setLayout(layout)
+        # Add sections widget to the frame layout
+        frame_layout.addWidget(sections_widget)
+        outer_frame.setLayout(frame_layout)
+
+        # Add the outer frame to the main layout
+        main_layout.addWidget(outer_frame)
+        self.setLayout(main_layout)

@@ -64,3 +64,28 @@ QFrame {
     border-radius: 10px;
     padding: 20px;
 }
+
+/* סגנון עבור QScrollBar */
+QScrollBar:vertical {
+    border: 2px solid #999999;
+    background: #F0F0F0;
+    width: 12px;
+}
+QScrollBar::handle:vertical {
+    background: #CCCCCC;
+    min-height: 20px;
+}
+QScrollBar::add-line:vertical {
+    border: 2px solid #999999;
+    background: #F0F0F0;
+    height: 20px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    border: 2px solid #999999;
+    background: #F0F0F0;
+    height: 20px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}

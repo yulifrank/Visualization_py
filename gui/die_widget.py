@@ -1,5 +1,4 @@
-import os
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QScrollArea, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QPushButton
 from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
 
@@ -16,25 +15,12 @@ class DieWidget(QWidget):
         self.layout = QVBoxLayout()
         self.setLayout(self.layout)
 
-        # Load external stylesheet
-        style_path = os.path.join(os.path.dirname(__file__), 'styles.css')
-        with open(style_path, 'r', encoding='utf-8') as f:
-            self.setStyleSheet(f.read())
-
-        # Scroll area for Quad Matrix
-        self.scroll_area = QScrollArea()
-        self.scroll_area.setWidgetResizable(True)
-        self.scroll_content = QWidget()
-        self.scroll_layout = QVBoxLayout(self.scroll_content)
-
         # Container for Quad Matrix
         self.quad_container = QWidget()
         self.quad_layout = QGridLayout(self.quad_container)
         self.quad_layout.setSpacing(10)
         self.quad_layout.setContentsMargins(0, 0, 0, 0)
-        self.scroll_layout.addWidget(self.quad_container)
-        self.scroll_area.setWidget(self.scroll_content)
-        self.layout.addWidget(self.scroll_area)
+        self.layout.addWidget(self.quad_container)
 
         # Back button
         self.back_button = QPushButton("Back")
@@ -113,5 +99,4 @@ class DieWidget(QWidget):
         super().resizeEvent(event)
 
     def go_back(self):
-
         self.main_window.show_die_buttons()
