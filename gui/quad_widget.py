@@ -36,7 +36,7 @@ class QuadWidget(QWidget):
                     cluster_widget = ClusterWidget(cluster, self)
                     cluster_layout.addWidget(cluster_widget, cluster.row, cluster.col)
 
-        back_button = QPushButton("Back")
+        back_button = QPushButton("Back To "+self.quad.name)
         back_button.clicked.connect(self.show_quad)
         cluster_layout.addWidget(back_button, 8, 0, 1, 8)  # Adding the back button at the bottom
 
