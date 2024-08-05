@@ -1,7 +1,8 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QFrame, QGridLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QGridLayout, QFrame
 from PyQt5.QtCore import Qt
 from component import Component
 from constants import CLASTER_COLORS
+from gui.section_detail_widget import SectionDetailWidget
 
 
 class SectionWidget(QWidget):
@@ -37,7 +38,7 @@ class SectionWidget(QWidget):
             if widget:
                 self.grid_layout.addWidget(widget, row, col)
                 col += 1
-                if col >= 4:  # Move to the next row after 4 columns
+                if col >= 7:  # Move to the next row after 7 columns
                     col = 0
                     row += 1
 
@@ -50,7 +51,7 @@ class SectionWidget(QWidget):
             return None
         label = QLabel(f"{title}: {data}")
         label.setStyleSheet(
-            f'background-color: {color}; border: 2px solid black; border-radius: 10px; padding: 5px; margin: 5px;'
+            f'background-color: {color}; border: 2px solid black; border-radius: 7px; padding: 5px; margin: 5px;'
         )
         label.setFixedSize(150, 50)
         return label
@@ -60,7 +61,7 @@ class SectionWidget(QWidget):
             return None
         button = QPushButton(title)
         button.setStyleSheet(
-            f'background-color: {color}; border: 2px solid black; border-radius: 10px; padding: 5px; margin: 5px;'
+            f'background-color: {color}; border: 2px solid black; border-radius: 7px; padding: 5px; margin: 5px;'
         )
         button.setFixedSize(150, 50)
         button.setCheckable(True)  # Make the button checkable
@@ -75,58 +76,15 @@ class SectionWidget(QWidget):
         # Remove any existing detail frame to avoid overlap
         self.remove_details()
 
-        detail_frame = QFrame()
-        detail_frame.setFrameShape(QFrame.StyledPanel)
-        detail_frame.setStyleSheet(
-            'background-color: lightgray; border: 2px solid black; border-radius: 10px; padding: 10px;')
-        detail_layout = QVBoxLayout()
-        detail_frame.setLayout(detail_layout)
+        self.detail_widget = SectionDetailWidget(self.host_interface, data)
+        self.layout.addWidget(self.detail_widget)
+        self.detail_widget.show()
 
-        if not data:
-            detail_layout.addWidget(QLabel("No details to show"))
-        elif isinstance(data, Component):
-            if not data.data:
-                detail_layout.addWidget(QLabel("No details to show"))
-            else:
-                detail_layout.addWidget(QLabel(f"Component ID: {data.id}, Component Name: {data.data}"))
-        elif isinstance(data, dict):
-            if not data:
-                detail_layout.addWidget(QLabel("No details to show"))
-            else:
-                for key, value in data.items():
-                    detail_layout.addWidget(QLabel(f"{key}: {value}"))
-        elif isinstance(data, list):
-            if not data:
-                detail_layout.addWidget(QLabel("No details to show"))
-            else:
-                # Add items in a grid layout within the detail frame
-                grid_layout = QGridLayout()
-                for idx, item in enumerate(data):
-                    row = idx // 4  # Adjust the number of columns here
-                    col = idx % 4
-                    grid_item = QLabel(f"Item: {item}")
-                    grid_item.setStyleSheet('padding: 2px; margin: 2px;')
-                    grid_layout.addWidget(grid_item, row, col)
-                detail_layout.addLayout(grid_layout)
-
-        close_button = QPushButton("Close")
-        close_button.clicked.connect(lambda: self.close_detail_frame(button))
-        detail_layout.addWidget(close_button)
-
-        self.layout.addWidget(detail_frame)
-        self.detail_frame = detail_frame  # Store the detail frame to manage its visibility
-
-    def close_detail_frame(self, button):
-        if hasattr(self, 'detail_frame'):
-            self.detail_frame.hide()
-            self.layout.removeWidget(self.detail_frame)
-            self.detail_frame.deleteLater()
-            del self.detail_frame
-        button.setChecked(False)  # Uncheck the button
+        button.setChecked(True)  # Ensure the button stays checked
 
     def remove_details(self):
-        if hasattr(self, 'detail_frame'):
-            self.detail_frame.hide()
-            self.layout.removeWidget(self.detail_frame)
-            self.detail_frame.deleteLater()
-            del self.detail_frame
+        if hasattr(self, 'detail_widget'):
+            self.detail_widget.hide()
+            self.layout.removeWidget(self.detail_widget)
+            self.detail_widget.deleteLater()
+            del self.detail_widget
