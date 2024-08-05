@@ -1,5 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QScrollArea
-import sys
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QScrollArea
 import qtawesome as qta
 from gui.die_widget import DieWidget
 from gui.host_interface_widget import HostInterfaceWidget
@@ -39,21 +38,28 @@ class MainWindow(QWidget):
         self.scroll_content_layout.addWidget(self.host_interface_widget)
 
         # Layout for DIE buttons
-        self.button_layout = QHBoxLayout()
+        self.button_layout = QVBoxLayout()
 
         # Add icons to buttons using QtAwesome
-        die1_icon = die2_icon = qta.icon('fa5s.folder-open')
+        die_icon = qta.icon('fa5s.folder-open')
 
         self.die1_button = QPushButton("GO TO DIE1", self)
-        self.die1_button.setIcon(die1_icon)
+        self.die1_button.setIcon(die_icon)
         self.die1_button.clicked.connect(self.show_die1)
 
         self.die2_button = QPushButton("GO TO DIE2", self)
-        self.die2_button.setIcon(die2_icon)
+        self.die2_button.setIcon(die_icon)
         self.die2_button.clicked.connect(self.show_die2)
 
+        self.die2die_button = QPushButton("DIE TO DIE", self)
+        # Connect the die2die_button to an empty slot for now
+        self.die2die_button.clicked.connect(self.show_die2die)
+
+        # Add buttons to the layout in the desired order
         self.button_layout.addWidget(self.die1_button)
+        self.button_layout.addWidget(self.die2die_button)  # Place this button between the other two
         self.button_layout.addWidget(self.die2_button)
+
         self.scroll_content_layout.addLayout(self.button_layout)
 
         # Create and hide DieWidget initially
@@ -82,16 +88,12 @@ class MainWindow(QWidget):
         self.die_widget.setVisible(True)
         self.die_widget.show_quads(1)  # Show DIE2 quads
 
-    def show_host_interface(self):
-        print("Showing Host Interface")  # Debug print
-        self.die1_button.hide()
-        self.die2_button.hide()
-        self.die_widget.setVisible(False)
-        self.host_interface_widget.setVisible(True)
-
+    def show_die2die(self):
+        print("Showing DIE2DIE")  # Debug print
+        # Implement functionality for DIE2DIE if needed
+        pass
     def show_die_buttons(self):
         print("Showing DIE Buttons")  # Debug print
         self.die1_button.show()
         self.die2_button.show()
         self.die_widget.setVisible(False)
-
