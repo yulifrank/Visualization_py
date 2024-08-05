@@ -1,5 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QPushButton, QHBoxLayout, QScrollArea
-import sys
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QScrollArea
 import qtawesome as qta
 from gui.die_widget import DieWidget
 from gui.host_interface_widget import HostInterfaceWidget
@@ -93,14 +92,6 @@ class MainWindow(QWidget):
         print("Showing DIE2DIE")  # Debug print
         # Implement functionality for DIE2DIE if needed
         pass
-
-    def show_host_interface(self):
-        print("Showing Host Interface")  # Debug print
-        self.die1_button.hide()
-        self.die2_button.hide()
-        self.die_widget.setVisible(False)
-        self.host_interface_widget.setVisible(True)
-
     def show_die_buttons(self):
         print("Showing DIE Buttons")  # Debug print
         self.die1_button.show()

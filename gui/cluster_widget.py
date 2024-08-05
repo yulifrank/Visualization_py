@@ -19,7 +19,7 @@ class ClusterWidget(QWidget):
         self.label.setAlignment(Qt.AlignCenter)
         self.label.setStyleSheet(f'color: {text_color}; font-size: 16px;')
         layout.addWidget(self.label)
-        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {text_color}; border-radius: 10px; padding: 20px;')
+        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {text_color};')
 
         self.mousePressEvent = self.show_cluster_info
 

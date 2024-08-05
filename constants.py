@@ -4,7 +4,12 @@ CBU = 'Cbu'
 TCU = 'Tcu'
 ECORE = 'Ecore'
 HBM = 'HBMInterface'  # הוספת סוג ה-HBM Interface
-
+BMT="BMT"
+CBUS_INJ="CBUS inj"
+CBUS_CLT="CBUS clt"
+NFI_INJ="nfi inj"
+NFI_CLT="nfi clt"
+ECORES='Ecores'
 CLASTER_HEIGHT = 1
 CLASTER_WIDTH = 1
 

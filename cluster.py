@@ -8,6 +8,7 @@ class Cluster(Component):
         self.size_pixels = size_pixels
         self.color = color
 
+
     def __str__(self):
         return f"{self.row,self.col}{self.type_name}"
 
