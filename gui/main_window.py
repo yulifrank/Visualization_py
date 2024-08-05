@@ -106,3 +106,5 @@ class MainWindow(QWidget):
         self.die1_button.show()
         self.die2_button.show()
         self.die_widget.setVisible(False)
+
+    print("hello")
