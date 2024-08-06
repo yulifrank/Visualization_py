@@ -9,9 +9,14 @@ class MainWindow(QWidget):
         self.data_manager = data_manager
         self.die_widget = None
         self.host_interface_widget = None
+        self.dies = {}
+        self.load_dies()
         self.initUI()
+        self.show_die_buttons()
+
 
     def initUI(self):
+
         self.setWindowTitle('Quad Matrix')
         self.setGeometry(100, 100, 800, 600)
 
@@ -61,14 +66,23 @@ class MainWindow(QWidget):
         self.button_layout.addWidget(self.die2_button)
 
         self.scroll_content_layout.addLayout(self.button_layout)
-
         # Create and hide DieWidget initially
-        self.die_widget = DieWidget(self.data_manager, self)
+        print(self.dies)
+        self.die_widget = DieWidget(self.data_manager, self.dies, self)
         self.die_widget.setVisible(False)
         self.scroll_content_layout.addWidget(self.die_widget)
 
         # Apply the stylesheet from the file
         self.apply_stylesheet()
+
+    def load_dies(self):
+            self.dies[0] = self.data_manager.load_die(0)
+            self.dies[1] = self.data_manager.load_die(1)
+            # print("DIEs loaded")
+            #
+            # # Set the enabled state of the buttons based on is_enable
+            # self.die1_button.setEnabled(self.dies[0].is_enable)
+            # self.die2_button.setEnabled(self.dies[1].is_enable)
 
     def apply_stylesheet(self):
         with open("gui/styles.css", 'r', encoding='utf-8') as f:
@@ -76,23 +90,38 @@ class MainWindow(QWidget):
 
     def show_die1(self):
         print("Showing DIE1")  # Debug print
+
         self.die1_button.hide()
-        self.die2_button.hide()
+        self.die2_button.show()
         self.die_widget.setVisible(True)
+
         self.die_widget.show_quads(0)  # Show DIE1 quads
 
     def show_die2(self):
         print("Showing DIE2")  # Debug print
-        self.die1_button.hide()
+        self.die1_button.show()
         self.die2_button.hide()
         self.die_widget.setVisible(True)
+
         self.die_widget.show_quads(1)  # Show DIE2 quads
 
     def show_die2die(self):
         print("Showing DIE2DIE")  # Debug print
         # Implement functionality for DIE2DIE if needed
         pass
+
     def show_die_buttons(self):
+        # Set the enabled state of the buttons based on is_enable
+        self.die1_button.setEnabled(self.dies[0].is_enable)
+        self.die2_button.setEnabled(self.dies[1].is_enable)
+
+        # Update stylesheet for buttons
+        disabled_style = "background-color: grey; color: white;"
+        enabled_style = ""
+
+        self.die1_button.setStyleSheet(enabled_style if self.dies[0].is_enable else disabled_style)
+        self.die2_button.setStyleSheet(enabled_style if self.dies[1].is_enable else disabled_style)
+
         print("Showing DIE Buttons")  # Debug print
         self.die1_button.show()
         self.die2_button.show()

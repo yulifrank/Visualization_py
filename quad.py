@@ -11,6 +11,7 @@ class Quad(Component):
         self.name = name
         self.data = data
         self.clusters = [[None for _ in range(8)] for _ in range(8)]
+        self.is_enable = False
 
         self.init_clusters()
 

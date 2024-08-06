@@ -3,12 +3,11 @@ from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
 
 class DieWidget(QWidget):
-    def __init__(self, data_manager, main_window):
+    def __init__(self, data_manager, dies, main_window):
         super().__init__()
         self.data_manager = data_manager
         self.main_window = main_window
-        self.die1 = None
-        self.die2 = None
+        self.dies = dies
         self.initUI()
 
     def initUI(self):
@@ -31,19 +30,12 @@ class DieWidget(QWidget):
         self.quad_container.setVisible(False)
 
         # Load dies
-        self.load_dies()
 
-    def load_dies(self):
-        try:
-            self.die1 = self.data_manager.load_die(0)
-            self.die2 = self.data_manager.load_die(1)
-            print("DIEs loaded")
-        except Exception as e:
-            print(f"Error loading DIEs: {e}")
+
 
     def show_quads(self, die_index):
         try:
-            die = self.die1 if die_index == 0 else self.die2
+            die = self.dies.get(die_index)
             if die is None:
                 print("Error: die is None")
                 return
