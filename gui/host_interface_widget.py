@@ -56,6 +56,7 @@ class HostInterfaceWidget(QWidget):
 
         self.extra_buttons_widget = QWidget()
         self.extra_buttons_widget.setLayout(self.extra_buttons_layout)
+        self.extra_buttons_widget.setVisible(False)  # Initially hide the extra buttons
 
         self.section_data_handler = SectionDataHandler(self.host_interface)
         self.main_layout.addWidget(self.outer_frame)
@@ -65,12 +66,10 @@ class HostInterfaceWidget(QWidget):
         self.setLayout(self.main_layout)
 
     def toggle_content(self):
-        if self.sections_widget.isVisible():
-            self.sections_widget.setVisible(False)
-            self.toggle_button.setText("Show Details")
-        else:
-            self.sections_widget.setVisible(True)
-            self.toggle_button.setText("Hide Details")
+        is_visible = self.sections_widget.isVisible()
+        self.sections_widget.setVisible(not is_visible)
+        self.extra_buttons_widget.setVisible(not is_visible)  # Toggle the visibility of the extra buttons
+        self.toggle_button.setText("Hide Details" if not is_visible else "Show Details")
 
     def show_details(self, section_name):
         self.section_data_handler.display_section_data(section_name)
