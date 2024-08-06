@@ -17,10 +17,12 @@ class ClusterWidget(QWidget):
         text_color = color.name()
         self.label = QLabel(f'{self.cluster.type_name}\nCluster {self.cluster.id}', self)
         self.label.setAlignment(Qt.AlignCenter)
-        self.label.setStyleSheet(f'color: {text_color}; font-size: 16px;')
+        text_color=text_color if self.cluster.is_enable else "lightgrey"
+        self.label.setStyleSheet(f'color: {text_color }; font-size: 16px;')
         layout.addWidget(self.label)
-        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {text_color};')
+        self.setStyleSheet(f'background-color: lightgrey; border:  2px dashed {text_color};')
 
+        self.setEnabled(self.cluster.is_enable)
         self.mousePressEvent = self.show_cluster_info
 
     def show_cluster_info(self, event):

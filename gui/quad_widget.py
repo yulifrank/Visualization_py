@@ -19,7 +19,11 @@ class QuadWidget(QWidget):
         self.label = QLabel(self.quad.name, self)
         self.label.setAlignment(Qt.AlignCenter)
         self.layout.addWidget(self.label)
-        self.setStyleSheet('border: 2px dashed black;')
+        color = "green" if self.quad.is_enable else "lightgrey"
+
+        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {color};')
+        self.setEnabled(self.quad.is_enable)
+
         self.mousePressEvent = self.show_clusters
 
     def show_clusters(self, event=None):

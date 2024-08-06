@@ -15,8 +15,8 @@ CLASTER_WIDTH = 1
 
 CLASTER_COLORS = {
     "BMT": 'lightblue',
-    "H2G": 'lightgreen',
-    "G2H": 'lightcoral',
+    "H2G": 'pink',
+    "G2H": 'coral',
     "PCIe": 'yellow',
     "Cbu": 'blue',
     'Tcu': 'red',

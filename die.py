@@ -10,6 +10,7 @@ class Die(Component):
         self.quads = [[None for _ in range(2)] for _ in range(2)]
         self.data = data
         self.init_quads()
+        self.is_enable = False
 
     def init_quads(self):
 

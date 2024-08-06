@@ -7,6 +7,7 @@ class Cluster(Component):
         self.col = col
         self.size_pixels = size_pixels
         self.color = color
+        self.is_enable = False
 
 
     def __str__(self):
