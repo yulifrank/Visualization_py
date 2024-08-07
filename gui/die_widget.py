@@ -17,7 +17,7 @@ class DieWidget(QWidget):
         self.quad_container = QWidget()
         self.quad_layout = QGridLayout(self.quad_container)
         self.quad_layout.setSpacing(0)  # Reduced spacing
-        self.quad_layout.setContentsMargins(10, 10, 10, 10)  # Add small margins
+        self.quad_layout.setContentsMargins(200, 10, 200, 10)  # Add small margins
         self.layout.addWidget(self.quad_container)
 
         # Back button

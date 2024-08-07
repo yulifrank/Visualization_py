@@ -1,104 +1,126 @@
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QGridLayout, QPushButton
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QGridLayout
 from PyQt5.QtCore import Qt
+from gui.cluster_info_widget import ClusterInfoWidget
+from gui.cluster_widget import ClusterWidget  # Ensure you import this to avoid circular imports
 
 class QuadWidget(QWidget):
-    def __init__(self, quad, parent=None):
+    def __init__(self, quad, is_right_side=True, parent=None):
         super().__init__(parent)
         self.quad = quad
+        self.is_right_side = is_right_side
         self.parent = parent
         self.initUI()
 
     def initUI(self):
-        self.layout = QHBoxLayout()  # Use horizontal layout
-        self.layout.setSpacing(5)  # Reduced spacing
-        self.layout.setContentsMargins(5, 5, 5, 5)  # Add small margins
+        self.layout = QVBoxLayout()
         self.setLayout(self.layout)
 
-        # Create a vertical layout for the quad
-        self.quad_layout = QVBoxLayout()
-        self.quad_label = QLabel(self.quad.name, self)
-        self.quad_label.setAlignment(Qt.AlignCenter)
-        self.quad_layout.addWidget(self.quad_label)
+        self.grid_layout = QGridLayout()
+        self.layout.addLayout(self.grid_layout)
 
+        # Add Quad label
+        self.label_quad = QLabel(self.quad.name, self)
+        self.label_quad.setAlignment(Qt.AlignCenter)
+        self.grid_layout.addWidget(self.label_quad, 0, 0)
+
+        # Add HBM label
+        self.add_hbm()
+
+        # Set stretch factors for the columns
+        self.grid_layout.setColumnStretch(0, 3)  # Quad takes up 3 parts
+        self.grid_layout.setColumnStretch(1, 1)  # HBM takes up 1 part
+
+        self.setStyleSheet('border: 2px dashed black;')
         color = "green" if self.quad.is_enable else "lightgrey"
         self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {color};')
         self.setEnabled(self.quad.is_enable)
 
-        # Add quad info to layout
-        self.layout.addLayout(self.quad_layout)
+    def add_hbm(self):
+        self.label_hbm = QLabel("hbm " + self.quad.hbm.type_name, self)
+        self.label_hbm.setAlignment(Qt.AlignCenter)
 
-        # Add hbm info
-        if self.quad.hbm:
-            self.hbm_widget = QLabel(f"HBM: {self.quad.hbm}", self)  # Display HBM information
-            self.hbm_widget.setAlignment(Qt.AlignCenter)
-            self.hbm_widget.setStyleSheet('background-color: lightblue; border: 1px solid black;')
-            # Set fixed size for hbm widget
-            self.hbm_widget.setFixedSize(100, 600)
-            self.layout.addWidget(self.hbm_widget)
+        if self.is_right_side:
+            self.grid_layout.addWidget(self.label_hbm, 0, 1)
+        else:
+            self.grid_layout.addWidget(self.label_hbm, 0, -1)
 
-        # Set fixed size for quad widget to be twice the size of the hbm widget
-        if self.quad.hbm:
-            self.setFixedSize(self.hbm_widget.width() * 2, self.hbm_widget.height() * 2)
+    def mousePressEvent(self, event):
+        if not self.is_hbm(event.pos()):
+            self.show_clusters()
 
-        self.mousePressEvent = self.show_clusters
+    def is_hbm(self, pos):
+        return self.label_hbm.geometry().contains(pos)
 
     def show_clusters(self, event=None):
-        from gui.cluster_widget import ClusterWidget  # Import to avoid circular import
-        self.clear_layout()
+        # Hide the Quad label
+        if self.label_quad:
+            self.label_quad.hide()
 
-        cluster_layout = QGridLayout()
-        cluster_layout.setSpacing(0)  # Reduced spacing
-        self.layout.addLayout(cluster_layout)
+        # Remove old cluster layout if it exists
+        if hasattr(self, 'cluster_layout'):
+            while self.cluster_layout.count():
+                item = self.cluster_layout.takeAt(0)
+                widget = item.widget()
+                if widget:
+                    widget.deleteLater()
+
+        self.cluster_layout = QGridLayout()
+        self.cluster_layout.setSpacing(0)
+        self.grid_layout.addLayout(self.cluster_layout, 0, 0, 1, 1)  # Re-add to the grid layout, same row, full width
 
         for row in self.quad.clusters:
             for cluster in row:
                 if cluster is not None:
                     cluster_widget = ClusterWidget(cluster, self)
-                    cluster_layout.addWidget(cluster_widget, cluster.row, cluster.col)
+                    self.cluster_layout.addWidget(cluster_widget, cluster.row, cluster.col)
 
         back_button = QPushButton("Back To " + self.quad.name)
         back_button.clicked.connect(self.show_quad)
-        cluster_layout.addWidget(back_button, 8, 0, 1, 8)  # Adding the back button at the bottom
+        self.cluster_layout.addWidget(back_button, 8, 0, 1, 8)  # Adding the back button at the bottom
 
         self.adjustSize()
 
     def show_cluster_info(self, cluster):
         self.clear_layout()
-
-        from gui.cluster_info_widget import ClusterInfoWidget
         cluster_info_widget = ClusterInfoWidget(cluster.id, cluster.color, self)
         self.layout.addWidget(cluster_info_widget)
 
-        back_button = QPushButton("Back To clusters")
-        back_button.clicked.connect(self.show_clusters)
-        self.layout.addWidget(back_button)
 
-    def show_quad(self):
+    def show_quad(self, init=0):
+        self.setStyleSheet('border: 2px dashed black;')
+        color = "green" if self.quad.is_enable else "lightgrey"
+        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {color};')
         self.clear_layout()
 
-        self.quad_label = QLabel(self.quad.name, self)
-        self.quad_label.setAlignment(Qt.AlignCenter)
-        self.layout.addWidget(self.quad_label)
+        self.grid_layout = QGridLayout()
+        self.layout.addLayout(self.grid_layout)
 
-        self.mousePressEvent = self.show_clusters
+        # Re-add Quad label
+        self.label_quad = QLabel(self.quad.name, self)
+        self.label_quad.setAlignment(Qt.AlignCenter)
+        self.grid_layout.addWidget(self.label_quad, 0, 0)
+
+        # Re-add HBM label
+        self.add_hbm()
+
+        # Set stretch factors for the columns
+        self.grid_layout.setColumnStretch(0, 3)
+        self.grid_layout.setColumnStretch(1, 1)
+
         self.adjustSize()
+        if init:
+            self.show_clusters()
 
-    def clear_layout(self):
-        while self.layout.count():
-            item = self.layout.takeAt(0)
+    def clear_layout(self, layout=None):
+        if layout is None:
+            layout = self.layout
+
+        while layout.count():
+            item = layout.takeAt(0)
             widget = item.widget()
-            if widget is not None:
+            if widget:
                 widget.deleteLater()
-            else:
-                while item.layout().count():
-                    sub_item = item.layout().takeAt(0)
-                    sub_widget = sub_item.widget()
-                    if sub_widget is not None:
-                        sub_widget.deleteLater()
-                    elif sub_item.layout() is not None:
-                        while sub_item.layout().count():
-                            sub_sub_item = sub_item.layout().takeAt(0)
-                            sub_sub_widget = sub_sub_item.widget()
-                            if sub_sub_widget is not None:
-                                sub_sub_widget.deleteLater()
-                        item.layout().removeItem(sub_item)
+            elif item.layout():
+                self.clear_layout(item.layout())
+
+        layout.update()
