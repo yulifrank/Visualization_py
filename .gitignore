@@ -65,3 +65,7 @@ gui/__pycache__/die_widget.cpython-311.pyc
 gui/__pycache__/cluster_widget.cpython-311.pyc
 gui/__pycache__/cluster_info_widget.cpython-311.pyc
 __pycache__/die.cpython-311.pyc
+__pycache__/cbu.cpython-311.pyc
+__pycache__/cluster.cpython-311.pyc
+__pycache__/ecore.cpython-311.pyc
+__pycache__/tcu.cpython-311.pyc
