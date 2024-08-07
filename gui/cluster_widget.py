@@ -12,6 +12,8 @@ class ClusterWidget(QWidget):
 
     def initUI(self):
         layout = QVBoxLayout()
+        layout.setSpacing(5)  # Reduced spacing
+        layout.setContentsMargins(5, 5, 5, 5)  # Add small margins
         self.setLayout(layout)
         color = QColor(self.cluster.color)
         text_color = color.name()
@@ -20,11 +22,10 @@ class ClusterWidget(QWidget):
         text_color=text_color if self.cluster.is_enable else "lightgrey"
         self.label.setStyleSheet(f'color: {text_color }; font-size: 16px;')
         layout.addWidget(self.label)
-        self.setStyleSheet(f'background-color: lightgrey; border:  2px dashed {text_color};')
+        self.setStyleSheet(f'background-color: lightgrey; border: 2px dashed {text_color};')
 
         self.setEnabled(self.cluster.is_enable)
         self.mousePressEvent = self.show_cluster_info
-
     def show_cluster_info(self, event):
         from gui.quad_widget import QuadWidget  # ייבוא כאן כדי למנוע מעגליות
         parent_widget = self.parent()

@@ -58,12 +58,7 @@ QFrame {
     padding: 20px;
 }
 
-/* סגנון עבור QuadWidget */
-.QuadWidget {
-    border: 2px dashed red;
-    border-radius: 10px;
-    padding: 20px;
-}
+
 
 /* סגנון עבור QScrollBar */
 QScrollBar:vertical {
@@ -88,4 +83,12 @@ QScrollBar::sub-line:vertical {
     height: 20px;
     subcontrol-position: top;
     subcontrol-origin: margin;
+}
+
+
+
+
+QLabel {
+    margin: 0;
+    padding: 0;
 }

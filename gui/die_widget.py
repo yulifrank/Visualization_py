@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGridLayout, QPushButton
 from PyQt5.QtCore import Qt
 from gui.quad_widget import QuadWidget
-
 class DieWidget(QWidget):
     def __init__(self, data_manager, dies, main_window):
         super().__init__()
@@ -17,8 +16,8 @@ class DieWidget(QWidget):
         # Container for Quad Matrix
         self.quad_container = QWidget()
         self.quad_layout = QGridLayout(self.quad_container)
-        self.quad_layout.setSpacing(10)
-        self.quad_layout.setContentsMargins(0, 0, 0, 0)
+        self.quad_layout.setSpacing(0)  # Reduced spacing
+        self.quad_layout.setContentsMargins(0, 0, 0, 0)  # Add small margins
         self.layout.addWidget(self.quad_container)
 
         # Back button
@@ -28,10 +27,6 @@ class DieWidget(QWidget):
 
         # Initially hide the quad_container
         self.quad_container.setVisible(False)
-
-        # Load dies
-
-
 
     def show_quads(self, die_index):
         try:
@@ -53,7 +48,7 @@ class DieWidget(QWidget):
                         quad_widget = QLabel('Empty', self)
                         quad_widget.setAlignment(Qt.AlignCenter)
                         quad_widget.setStyleSheet(
-                            'border: 1px dashed black; min-width: 150px; min-height: 150px; background-color: lightgrey;')
+                            'border: 1px dashed black; min-width: 100px; min-height: 100px; background-color: red;')
                     self.quad_layout.addWidget(quad_widget, i, j, alignment=Qt.AlignCenter)
 
             self.adjust_quad_sizes()
@@ -74,7 +69,7 @@ class DieWidget(QWidget):
 
     def adjust_quad_sizes(self):
         try:
-            size = self.size().width() // 2 - 20
+            size = self.size().width() // 3 - 20
             for i in range(2):
                 for j in range(2):
                     item = self.quad_layout.itemAtPosition(i, j)

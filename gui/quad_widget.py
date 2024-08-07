@@ -2,10 +2,6 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QLabel, QPushButt
 from PyQt5.QtCore import Qt
 
 from gui.cluster_info_widget import ClusterInfoWidget
-
-
-# הסרת הייבוא של ClusterWidget כאן כדי למנוע מעגליות
-# נייבא את ClusterWidget רק כשנשתמש בו
 class QuadWidget(QWidget):
     def __init__(self, quad, parent=None):
         super().__init__(parent)
@@ -15,6 +11,8 @@ class QuadWidget(QWidget):
 
     def initUI(self):
         self.layout = QVBoxLayout()
+        self.layout.setSpacing(5)  # Reduced spacing
+        self.layout.setContentsMargins(5, 5, 5, 5)  # Add small margins
         self.setLayout(self.layout)
         self.label = QLabel(self.quad.name, self)
         self.label.setAlignment(Qt.AlignCenter)
@@ -31,7 +29,7 @@ class QuadWidget(QWidget):
         self.clear_layout()
 
         cluster_layout = QGridLayout()
-        cluster_layout.setSpacing(0)
+        cluster_layout.setSpacing(0)  # Reduced spacing
         self.layout.addLayout(cluster_layout)
 
         for row in self.quad.clusters:
@@ -63,7 +61,6 @@ class QuadWidget(QWidget):
         self.label.setAlignment(Qt.AlignCenter)
         self.layout.addWidget(self.label)
 
-        # self.setStyleSheet('border: 2px dashed red;')
         self.mousePressEvent = self.show_clusters
         self.adjustSize()
 
