@@ -12,6 +12,8 @@ class Quad(Component):
         self.data = data
         self.clusters = [[None for _ in range(8)] for _ in range(8)]
         self.is_enable = False
+        self.hbm = Component(-1, data.get('HBM', {}))  # Set to empty dict if no data
+
 
         self.init_clusters()
 
