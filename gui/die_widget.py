@@ -17,7 +17,7 @@ class DieWidget(QWidget):
         self.quad_container = QWidget()
         self.quad_layout = QGridLayout(self.quad_container)
         self.quad_layout.setSpacing(0)  # Reduced spacing
-        self.quad_layout.setContentsMargins(0, 0, 0, 0)  # Add small margins
+        self.quad_layout.setContentsMargins(250, 10, 250, 10)  # Add small margins
         self.layout.addWidget(self.quad_container)
 
         # Back button
@@ -69,7 +69,7 @@ class DieWidget(QWidget):
 
     def adjust_quad_sizes(self):
         try:
-            size = self.size().width() // 3 - 20
+            size = self.size().width() // 3
             for i in range(2):
                 for j in range(2):
                     item = self.quad_layout.itemAtPosition(i, j)
